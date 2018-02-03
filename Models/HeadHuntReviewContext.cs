@@ -43,8 +43,8 @@ namespace headhuntapi.Models
 
             modelBuilder.Entity<Company>(entity =>
             {
-                entity.Property(e => e.Desc)
-                    .HasColumnName("desc")
+                entity.Property(e => e.Title)
+                    .HasColumnName("title")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
@@ -75,8 +75,8 @@ namespace headhuntapi.Models
                     .HasColumnName("date")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.Desc)
-                    .HasColumnName("desc")
+                entity.Property(e => e.Blurb)
+                    .HasColumnName("blurb")
                     .HasColumnType("text");
 
                 entity.Property(e => e.RecruiterId).HasColumnName("recruiterId");
