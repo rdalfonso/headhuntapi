@@ -8,6 +8,10 @@
     <Folder Include="wwwroot\" />
     <Folder Include="Services\" />
     <Folder Include="Models\Dtos\" />
+    <Folder Include="docker\" />
+    <Folder Include="docker\database\" />
+    <Folder Include="database\" />
+    <Folder Include="docker\api\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,5 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Log.txt" />
+    <None Remove="entrypoint.sh" />
+    <None Remove="database\entrypoint.sh" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@ services:
         depends_on:
             - db
     db:
-        image: "microsoft/mssql-server-linux:2017-latest"
+        build: ./docker/database
         environment:
             SA_PASSWORD: "L@rc0mb3"
             ACCEPT_EULA: "Y"

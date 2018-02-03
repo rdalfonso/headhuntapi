@@ -8,6 +8,7 @@ RUN dotnet restore headhuntapi.csproj
 
 # Copy everything else and build
 COPY . ./
+
 RUN dotnet publish headhuntapi.csproj -o /publish
 
 WORKDIR /publish
