@@ -1,9 +1,12 @@
 ﻿FROM microsoft/mssql-server-linux:latest
 
-#COPY ./import-data.sh /usr/local/bin/
-#COPY ./setup.sql /usr/local/bin/
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-#RUN chmod +x /usr/local/bin/import-data.sh \
-#chmod +x /usr/local/bin/setup.sql
+# Bundle app source
+COPY . /usr/src/app
 
-#CMD ["/usr/local/bin/import-data.sh"]
+RUN chmod +x /usr/src/app/import-data.sh
+
+CMD /bin/bash ./entrypoint.sh ; sleep infinity

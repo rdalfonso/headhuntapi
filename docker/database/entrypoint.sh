@@ -1,6 +1,2 @@
-
-#wait for the SQL Server to come up
-sleep 90s
-
-#run the setup script to create the DB and the schema in the DB
-#/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P L@rc0mb3 -d master -i ./setup.sql
+#start SQL Server, start the script to create the DB and import the data, start the app
+/opt/mssql/bin/sqlservr & /usr/src/app/import-data.sh
