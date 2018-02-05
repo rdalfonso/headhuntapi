@@ -10,8 +10,6 @@
     <Folder Include="Models\Dtos\" />
     <Folder Include="docker\" />
     <Folder Include="docker\database\" />
-    <Folder Include="database\" />
-    <Folder Include="docker\api\" />
   </ItemGroup>
 
   <ItemGroup>
