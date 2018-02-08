@@ -24,7 +24,10 @@ namespace headhuntapi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)         {             services.AddCors();             services.AddMvc();              var connString = $"Data Source=db,1433;Initial Catalog=HeadHuntReview;User ID=SA;Password=L@rc0mb3;";             services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(connString));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();         } 
+        public void ConfigureServices(IServiceCollection services)         {             services.AddCors();             services.AddMvc();              var connString = $"Data Source=db,1433;Initial Catalog=HeadHuntReview;User ID=SA;Password=L@rc0mb3;";             services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(connString));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<ICandidateRepository, CandidateRepository>();         } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -34,7 +37,7 @@ namespace headhuntapi
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseCors(             //   options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()             //);
+            app.UseCors(                options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()             );
             app.UseMvc();
         }
     }

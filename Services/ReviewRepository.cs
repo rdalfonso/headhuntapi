@@ -5,32 +5,32 @@ using headhuntapi.Models;
 
 namespace headhuntapi.Services
 {
-    public class CompanyRepository : ICompanyRepository
+    public class ReviewRepository : IReviewRepository
     {
         private readonly HeadHuntReviewContext _context;
 
-        public CompanyRepository(HeadHuntReviewContext context)
+        public ReviewRepository(HeadHuntReviewContext context)
         {
             _context = context;
         }
 
-        public List<Company> GetCompanies()
+        public List<Reviews> GetReviews()
         {
-            List<Company> companies = _context.Company.ToList();
-            return companies;
+            List<Reviews> reviews = _context.Reviews.ToList();
+            return reviews;
         }
 
-        public Company GetCompany(int id)
+        public Reviews GetReview(int id)
         {
-            Company companies = _context.Company.Where(r => r.Id == id).FirstOrDefault();
-            return companies;
+            Reviews reviews = _context.Reviews.Where(r => r.Id == id).FirstOrDefault();
+            return reviews;
         }
 
-        public bool AddCompany(Company companies)
+        public bool AddReview(Reviews reviews)
         {
             try
             {
-                _context.Company.Add(companies);
+                _context.Reviews.Add(reviews);
                 _context.SaveChanges();
                 return true;
             }
@@ -42,12 +42,12 @@ namespace headhuntapi.Services
 
         }
 
-        public bool DeleteCompany(int Id)
+        public bool DeleteReview(int Id)
         {
             try
             {
-                Company companies = _context.Company.Where(r => r.Id == Id).FirstOrDefault();
-                _context.Company.Remove(companies);
+                Reviews reviews = _context.Reviews.Where(r => r.Id == Id).FirstOrDefault();
+                _context.Reviews.Remove(reviews);
                 _context.SaveChanges();
                 return true;
             }

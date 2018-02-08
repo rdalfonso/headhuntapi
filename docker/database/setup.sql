@@ -16,7 +16,7 @@ CREATE UNIQUE INDEX Candidates_Id_uindex
   ON Candidates (Id)
 GO
 
-CREATE TABLE Companies
+CREATE TABLE Company
 (
   Id   INT IDENTITY PRIMARY KEY,
   Name VARCHAR(50),
@@ -24,15 +24,15 @@ CREATE TABLE Companies
 )
 GO
 
-CREATE UNIQUE INDEX Companies_Id_uindex
-  ON Companies (Id)
+CREATE UNIQUE INDEX Company_Id_uindex
+  ON Company (Id)
 GO
 
 CREATE TABLE Reviews
 (
   Id          INT IDENTITY PRIMARY KEY,
   Title       VARCHAR(50),
-  Blurb        VARCHAR(50),
+  Blurb       VARCHAR(50),
   Stars       INT,
   Date        DATETIME,
   RecruiterId INT,

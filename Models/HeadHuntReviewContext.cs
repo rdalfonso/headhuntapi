@@ -77,7 +77,8 @@ namespace headhuntapi.Models
 
                 entity.Property(e => e.Blurb)
                     .HasColumnName("blurb")
-                    .HasColumnType("text");
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.RecruiterId).HasColumnName("recruiterId");
 

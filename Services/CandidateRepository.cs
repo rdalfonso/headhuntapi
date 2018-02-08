@@ -5,32 +5,32 @@ using headhuntapi.Models;
 
 namespace headhuntapi.Services
 {
-    public class CompanyRepository : ICompanyRepository
+    public class CandidateRepository : ICandidateRepository
     {
         private readonly HeadHuntReviewContext _context;
 
-        public CompanyRepository(HeadHuntReviewContext context)
+        public CandidateRepository(HeadHuntReviewContext context)
         {
             _context = context;
         }
 
-        public List<Company> GetCompanies()
+        public List<Candidates> GetCandidates()
         {
-            List<Company> companies = _context.Company.ToList();
-            return companies;
+            List<Candidates> candidates = _context.Candidates.ToList();
+            return candidates;
         }
 
-        public Company GetCompany(int id)
+        public Candidates GetCandidate(int id)
         {
-            Company companies = _context.Company.Where(r => r.Id == id).FirstOrDefault();
-            return companies;
+            Candidates candidates = _context.Candidates.Where(r => r.Id == id).FirstOrDefault();
+            return candidates;
         }
 
-        public bool AddCompany(Company companies)
+        public bool AddCandidate(Candidates candidates)
         {
             try
             {
-                _context.Company.Add(companies);
+                _context.Candidates.Add(candidates);
                 _context.SaveChanges();
                 return true;
             }
@@ -42,12 +42,12 @@ namespace headhuntapi.Services
 
         }
 
-        public bool DeleteCompany(int Id)
+        public bool DeleteCandidate(int Id)
         {
             try
             {
-                Company companies = _context.Company.Where(r => r.Id == Id).FirstOrDefault();
-                _context.Company.Remove(companies);
+                Candidates candidates = _context.Candidates.Where(r => r.Id == Id).FirstOrDefault();
+                _context.Candidates.Remove(candidates);
                 _context.SaveChanges();
                 return true;
             }
