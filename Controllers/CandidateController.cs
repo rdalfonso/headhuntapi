@@ -43,6 +43,7 @@ namespace headhuntapi.Controllers
             {
                 Name = candidate.Name,
                 Industry = candidate.Industry,
+                ZipCode = candidate.ZipCode,
                 Stars = candidate.Stars
             };
 

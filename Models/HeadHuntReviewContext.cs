@@ -38,20 +38,32 @@ namespace headhuntapi.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.ZipCode)
+                    .HasColumnName("zipcode")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Stars).HasColumnName("stars");
             });
 
             modelBuilder.Entity<Company>(entity =>
             {
-                entity.Property(e => e.Title)
-                    .HasColumnName("title")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Industry)
+                    .HasColumnName("industry")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Location)
+                    .HasColumnName("location")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Stars).HasColumnName("stars");
             });
 
             modelBuilder.Entity<Recruiters>(entity =>
@@ -65,6 +77,20 @@ namespace headhuntapi.Models
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(50);
+
+                entity.Property(e => e.Location)
+                    .HasColumnName("location")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.ZipCode)
+                    .HasColumnName("zipcode")
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.Level)
+                   .HasColumnName("level")
+                   .HasMaxLength(10);
+
+                entity.Property(e => e.Stars).HasColumnName("stars");
             });
 
             modelBuilder.Entity<Reviews>(entity =>

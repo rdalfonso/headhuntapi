@@ -42,7 +42,9 @@ namespace headhuntapi.Controllers
             Company companyF = new Company
             {
                 Name = company.Name,
-                Title = company.Title
+                Industry = company.Industry,
+                Location = company.Location,
+                Stars = company.Stars
             };
 
             _companyRepo.AddCompany(companyF);
