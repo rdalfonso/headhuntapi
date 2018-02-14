@@ -43,8 +43,9 @@ namespace headhuntapi.Controllers
             {
                 Name = candidate.Name,
                 Industry = candidate.Industry,
-                ZipCode = candidate.ZipCode,
-                Stars = candidate.Stars
+                Email = candidate.Email,
+                ExperienceYrs = candidate.ExperienceYrs,
+                UniqueId = System.Guid.NewGuid()
             };
 
             _candidateRepo.AddCandidate(candidateF);

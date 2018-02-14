@@ -38,12 +38,15 @@ namespace headhuntapi.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ZipCode)
-                    .HasColumnName("zipcode")
+                entity.Property(e => e.Email)
+                    .HasColumnName("email")
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Stars).HasColumnName("stars");
+                entity.Property(e => e.ExperienceYrs).HasColumnName("experienceyrs");
+
+                entity.Property(e => e.UniqueId)
+                    .HasColumnName("uniqueId").HasColumnType("uniqueidentifier");
             });
 
             modelBuilder.Entity<Company>(entity =>
@@ -58,12 +61,33 @@ namespace headhuntapi.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Location)
-                    .HasColumnName("location")
+                entity.Property(e => e.Url)
+                    .HasColumnName("url")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Address1)
+                      .HasColumnName("Address1")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Stars).HasColumnName("stars");
+                entity.Property(e => e.Address2)
+                      .HasColumnName("Address2")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.City)
+                      .HasColumnName("City")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.State)
+                      .HasColumnName("State")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UniqueId)
+                    .HasColumnName("uniqueId").HasColumnType("uniqueidentifier");
             });
 
             modelBuilder.Entity<Recruiters>(entity =>
@@ -78,19 +102,26 @@ namespace headhuntapi.Models
                     .HasColumnName("name")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Location)
-                    .HasColumnName("location")
+                entity.Property(e => e.Title)
+                    .HasColumnName("title")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.ZipCode)
-                    .HasColumnName("zipcode")
-                    .HasMaxLength(10);
+                entity.Property(e => e.LinkedIn)
+                    .HasColumnName("linkedin")
+                    .HasMaxLength(255);
 
-                entity.Property(e => e.Level)
-                   .HasColumnName("level")
-                   .HasMaxLength(10);
+                entity.Property(e => e.Title)
+                    .HasColumnName("title")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Email)
+                   .HasColumnName("email")
+                   .HasMaxLength(50);
 
                 entity.Property(e => e.Stars).HasColumnName("stars");
+
+                entity.Property(e => e.UniqueId)
+                    .HasColumnName("uniqueId").HasColumnType("uniqueidentifier");
             });
 
             modelBuilder.Entity<Reviews>(entity =>
@@ -101,9 +132,9 @@ namespace headhuntapi.Models
                     .HasColumnName("date")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.Blurb)
-                    .HasColumnName("blurb")
-                    .HasMaxLength(50)
+                entity.Property(e => e.Body)
+                    .HasColumnName("body")
+                    .HasColumnType("text")
                     .IsUnicode(false);
 
                 entity.Property(e => e.RecruiterId).HasColumnName("recruiterId");
@@ -116,6 +147,9 @@ namespace headhuntapi.Models
                     .HasColumnName("title")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UniqueId)
+                    .HasColumnName("uniqueId").HasColumnType("uniqueidentifier");
             });
         }
     }

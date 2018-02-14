@@ -40,11 +40,13 @@ namespace headhuntapi.Controllers
             Reviews reviewF = new Reviews
             {
                 Title = review.Title,
-                Blurb = review.Blurb,
+                Body = review.Body,
                 Stars = review.Stars,
                 Date = System.DateTime.Now,
                 RecruiterId = review.RecruiterId,
+
                 CandidateId = review.CandidateId,
+                UniqueId = System.Guid.NewGuid()
             };
 
             _reviewRepo.AddReview(reviewF);

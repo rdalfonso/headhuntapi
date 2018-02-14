@@ -24,7 +24,16 @@ namespace headhuntapi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)         {             services.AddCors();             services.AddMvc();              var connString = $"Data Source=db,1433;Initial Catalog=HeadHuntReview;User ID=SA;Password=L@rc0mb3;";             services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(connString));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();
+        public void ConfigureServices(IServiceCollection services)         {             services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllHeaders",
+                      builder =>
+                      {
+                          builder.AllowAnyOrigin()
+                                 .AllowAnyHeader()
+                                 .AllowAnyMethod();
+                      });
+            });             services.AddMvc();              var connString = $"Data Source=db,1433;Initial Catalog=HeadHuntReview;User ID=SA;Password=L@rc0mb3;";             services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(connString));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICandidateRepository, CandidateRepository>();         } 
@@ -37,7 +46,8 @@ namespace headhuntapi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(                options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()             );
+            //app.UseCors(              //  options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()             //);
+            app.UseCors("AllowAllHeaders");
             app.UseMvc();
         }
     }

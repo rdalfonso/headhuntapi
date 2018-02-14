@@ -6,9 +6,10 @@ namespace headhuntapi.Models
     public partial class Candidates
     {
         public int Id { get; set; }
+        public Guid UniqueId { get; set; }
         public string Name { get; set; }
         public string Industry { get; set; }
-        public string ZipCode { get; set; }
-        public int? Stars { get; set; }
+        public string Email { get; set; }
+        public int? ExperienceYrs { get; set; }
     }
 }
