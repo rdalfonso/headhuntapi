@@ -44,7 +44,5 @@ jobs:
           name: Push Application Docker Image
           command: |
             if [ "$ {CIRCLE_BRANCH}" == "master" ]; then
-              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-              docker tag headhuntapi "$DOCKER_USER/headhuntapi:${CIRCLE_SHA1}"
-              docker push "$DOCKER_USER/headhuntapi:${CIRCLE_SHA1}"
+              $DOCKER_HUB_TRIGGER
             fi
