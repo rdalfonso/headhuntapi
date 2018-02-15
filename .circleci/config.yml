@@ -35,7 +35,7 @@ jobs:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
-            docker save -o /caches/headhuntapi.tar app
+            docker save -o /caches/headhuntapi.tar headhuntapi
       - save_cache:
           key: v1-master-1
           paths:
