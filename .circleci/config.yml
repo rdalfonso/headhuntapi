@@ -35,11 +35,11 @@ jobs:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
-            docker save -o /caches/app.tar app
+            docker save -o /caches/headhuntapi.tar app
       - save_cache:
           key: v1-master-1
           paths:
-            - /caches/app.tar
+            - /caches/headhuntapi.tar
       - run: dotnet restore headhuntapi.csproj /p:StartupObject=headhuntapi.Program
       - run: dotnet build headhuntapi.csproj /p:StartupObject=headhuntapi.Program
       - run:
