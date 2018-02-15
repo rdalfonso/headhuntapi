@@ -18,6 +18,7 @@
     <Folder Include="Models\Dtos\" />
     <Folder Include="docker\" />
     <Folder Include="docker\database\" />
+    <Folder Include=".circleci\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,5 +44,11 @@
     <None Remove="Log.txt" />
     <None Remove="entrypoint.sh" />
     <None Remove="database\entrypoint.sh" />
+    <None Remove=".circleci\circle.yml" />
+    <None Remove="circle.yml" />
+    <None Remove="docker\install-dependencies.sh" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".circleci\config.yml" />
   </ItemGroup>
 </Project>

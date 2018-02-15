@@ -1,0 +1,13 @@
+﻿version: 2
+jobs:
+  build:
+    working_directory: /temp
+    docker:
+      - image: microsoft/aspnetcore-build:2.0
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    steps:
+      - checkout
+      - run: dotnet restore headhuntapi.csproj /p:StartupObject=headhuntapi.Program
+      - run: dotnet build headhuntapi.csproj /p:StartupObject=headhuntapi.Program
