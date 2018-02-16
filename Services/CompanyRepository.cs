@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using headhuntapi.Models;
 
 namespace headhuntapi.Services
@@ -16,13 +17,20 @@ namespace headhuntapi.Services
 
         public List<Company> GetCompanies()
         {
-            List<Company> companies = _context.Company.ToList();
+            List<Company> companies = 
+                _context.Company
+                        .Include(r => r.Recruiters)
+                        .ToList();
             return companies;
         }
 
         public Company GetCompany(int id)
         {
-            Company companies = _context.Company.Where(r => r.Id == id).FirstOrDefault();
+            Company companies = 
+                _context.Company
+                        .Include(r => r.Recruiters)
+                        .Where(r => r.Id == id)
+                        .FirstOrDefault();
             return companies;
         }
 

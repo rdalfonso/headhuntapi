@@ -47,30 +47,29 @@ CREATE TABLE Recruiters
   Id        INT IDENTITY PRIMARY KEY,
   UniqueId  uniqueidentifier,
   Name      VARCHAR(50),
-  Company   VARCHAR(50),
   Title     VARCHAR(50),
   LinkedIn  VARCHAR(250),
   Email     VARCHAR(50),
   Stars     INT,
-  Level     VARCHAR(10),
-  CompanyId INT
+  Level     VARCHAR(20),
+  CompanyId INT FOREIGN KEY REFERENCES Company(Id),
 )
 GO
 
 SET IDENTITY_INSERT Recruiters ON
 GO
 
-INSERT INTO Recruiters (Id, UniqueId, Name, Company, Title, LinkedIn, Email, Stars, Level,  CompanyId)
-VALUES (1, NEWID(), 'Ken Hoinsky', 'Robert Half Technology', 'Lead Recruiter', 'https://www.linkedin.com/in/richarddalfonso/', 'ken@crunchyroll.com', 3, 'Senior', 2)
+INSERT INTO Recruiters (Id, UniqueId, Name, Title, LinkedIn, Email, Stars, Level,  CompanyId)
+VALUES (1, NEWID(), 'Ken Hoinsky', 'Lead Recruiter', 'https://www.linkedin.com/in/richarddalfonso/', 'ken@crunchyroll.com', 3, 'Senior', 2)
 
-INSERT INTO Recruiters (Id, UniqueId, Name, Company, Title, LinkedIn, Email, Stars, Level,  CompanyId)
-VALUES (2, NEWID(), 'Bob Villa', 'Robert Half Technology', 'Junior Recruiter', 'https://www.linkedin.com/in/richarddalfonso/', 'ken@crunchyroll.com', 4, 'Intermediate', 2)
+INSERT INTO Recruiters (Id, UniqueId, Name, Title, LinkedIn, Email, Stars, Level,  CompanyId)
+VALUES (2, NEWID(), 'Bob Villa',  'Junior Recruiter', 'https://www.linkedin.com/in/richarddalfonso/', 'ken@crunchyroll.com', 4, 'Intermediate', 2)
 
-INSERT INTO Recruiters (Id, UniqueId, Name, Company, Title, LinkedIn, Email, Stars, Level,  CompanyId)
-VALUES (3, NEWID(), 'Magic Man', 'The Money Store',  'Senior Executive', 'https://www.linkedin.com/in/richarddalfonso/','ken@crunchyroll.com', 5, 'Junior', 4)
+INSERT INTO Recruiters (Id, UniqueId, Name, Title, LinkedIn, Email, Stars, Level,  CompanyId)
+VALUES (3, NEWID(), 'Magic Man', 'Senior Executive', 'https://www.linkedin.com/in/richarddalfonso/','ken@crunchyroll.com', 5, 'Junior', 4)
 
-INSERT INTO Recruiters (Id, UniqueId, Name, Company, Title, LinkedIn, Email, Stars, Level,  CompanyId)
-VALUES (4, NEWID(), 'Method Man', 'The Money Store',  'Lead Headhunter', 'https://www.linkedin.com/in/richarddalfonso/', 'ken@crunchyroll.com', 2, 'Junior', 4)
+INSERT INTO Recruiters (Id, UniqueId, Name, Title, LinkedIn, Email, Stars, Level,  CompanyId)
+VALUES (4, NEWID(), 'Method Man', 'Lead Headhunter', 'https://www.linkedin.com/in/richarddalfonso/', 'ken@crunchyroll.com', 2, 'Junior', 4)
 
 
 SET IDENTITY_INSERT Recruiters OFF
@@ -84,12 +83,12 @@ GO
 
 CREATE TABLE Candidates
 (
-  Id       INT IDENTITY PRIMARY KEY,
+  Id        INT IDENTITY PRIMARY KEY,
   UniqueId  uniqueidentifier,
-  Name     VARCHAR(50),
-  Industry VARCHAR(50),
-  Email  VARCHAR(20),
-  ExperienceYrs    INT
+  Name      VARCHAR(50),
+  Industry  VARCHAR(50),
+  Email     VARCHAR(20),
+  ExperienceYrs INT
 )
 GO
 
@@ -121,29 +120,26 @@ CREATE TABLE Reviews
   Id          INT IDENTITY PRIMARY KEY,
   UniqueId    uniqueidentifier,
   Title       VARCHAR(50),
-  Body       text,
+  Body        text,
   Stars       INT,
   Date        DATETIME,
-  RecruiterId INT,
-  CompanyId INT,
-  CandidateId INT
+  RecruiterId INT FOREIGN KEY REFERENCES Recruiters(Id),
+  CandidateId INT FOREIGN KEY REFERENCES Candidates(Id)
 )
 GO
 
 SET IDENTITY_INSERT Reviews ON
 GO
 
-INSERT INTO Reviews (Id, UniqueId, Title,  Body, Stars, Date, RecruiterId, CompanyId, CandidateId)
-VALUES (1, NEWID(), 'Worst Manners', 'Dude is horrible', 2, getdate(), 1, 1, 1)
+INSERT INTO Reviews (Id, UniqueId, Title,  Body, Stars, Date, RecruiterId, CandidateId) 
+VALUES (1, NEWID(), 'Worst Manners', 'Dude is horrible', 2, getdate(), 1, 1)
 
-INSERT INTO Reviews (Id, UniqueId, Title,  Body, Stars, Date, RecruiterId, CompanyId, CandidateId)
-VALUES (2, NEWID(), 'Inflated Salary', 'Recruiter made false claims', 2, getdate(), 1, 1, 2)
-
-INSERT INTO Reviews (Id, UniqueId, Title,  Body, Stars, Date, RecruiterId, CompanyId, CandidateId)
-VALUES (3, NEWID(), 'Annoying Personality', 'Recruiter is obnoxious', 2, getdate(), 2, 1, 3)
-
-INSERT INTO Reviews (Id, UniqueId, Title,  Body, Stars, Date, RecruiterId, CompanyId, CandidateId)
-VALUES (4, NEWID(), 'Rock Star', 'Everything he promised came true.', 5, getdate(), 2, 1, 4)
+INSERT INTO Reviews (Id, UniqueId, Title,  Body, Stars, Date, RecruiterId, CandidateId) 
+VALUES (2, NEWID(), 'Awful Manners', 'Dude is horrible', 2, getdate(), 1, 2) 
+INSERT INTO Reviews (Id, UniqueId, Title,  Body, Stars, Date, RecruiterId, CandidateId)
+ VALUES (3, NEWID(), 'Annoying Personality', 'Recruiter is obnoxious', 2, getdate(), 3, 3) 
+INSERT INTO Reviews (Id, UniqueId, Title,  Body, Stars, Date, RecruiterId, CandidateId) 
+VALUES (4, NEWID(), 'Rock Star', 'Everything he promised came true.', 5, getdate(), 4, 4)
 
 SET IDENTITY_INSERT Reviews OFF
 GO

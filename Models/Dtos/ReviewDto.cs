@@ -7,7 +7,5 @@ namespace headhuntapi.Models.Dtos
         public string Body { get; set; }
         public int Stars { get; set; }
         public int RecruiterId { get; set; }
-        public int CompanyId { get; set; }
-        public int CandidateId { get; set; }
     }
 }

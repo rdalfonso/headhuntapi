@@ -44,8 +44,6 @@ namespace headhuntapi.Controllers
                 Stars = review.Stars,
                 Date = System.DateTime.Now,
                 RecruiterId = review.RecruiterId,
-
-                CandidateId = review.CandidateId,
                 UniqueId = System.Guid.NewGuid()
             };
 
