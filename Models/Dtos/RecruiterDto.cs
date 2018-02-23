@@ -9,6 +9,6 @@ namespace headhuntapi.Models.Dtos
         public string Email { get; set; }
         public int Stars { get; set; }
         public string Level { get; set; }
-        public int CompanyId { get; set; }
+        public Guid CompanyId { get; set; }
     }
 }

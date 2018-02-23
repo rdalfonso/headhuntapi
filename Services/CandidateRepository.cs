@@ -20,9 +20,9 @@ namespace headhuntapi.Services
             return candidates;
         }
 
-        public Candidates GetCandidate(int id)
+        public Candidates GetCandidate(Guid id)
         {
-            Candidates candidates = _context.Candidates.Where(r => r.Id == id).FirstOrDefault();
+            Candidates candidates = _context.Candidates.Where(r => r.UniqueId == id).FirstOrDefault();
             return candidates;
         }
 
@@ -42,11 +42,11 @@ namespace headhuntapi.Services
 
         }
 
-        public bool DeleteCandidate(int Id)
+        public bool DeleteCandidate(Guid Id)
         {
             try
             {
-                Candidates candidates = _context.Candidates.Where(r => r.Id == Id).FirstOrDefault();
+                Candidates candidates = _context.Candidates.Where(r => r.UniqueId == Id).FirstOrDefault();
                 _context.Candidates.Remove(candidates);
                 _context.SaveChanges();
                 return true;

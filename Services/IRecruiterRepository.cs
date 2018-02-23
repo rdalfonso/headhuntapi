@@ -3,6 +3,6 @@ namespace headhuntapi.Services
 {
     public interface IRecruiterRepository
     {
-        List<Recruiters> GetRecruiters();         Recruiters GetRecruiter(int id);         bool AddRecruiter(Recruiters recruiter);         bool DeleteRecruiter(int Id);
+        List<Recruiters> GetRecruiters();         Recruiters GetRecruiter(Guid id);         bool AddRecruiter(Recruiters recruiter);         bool DeleteRecruiter(Guid Id);
     }
 }

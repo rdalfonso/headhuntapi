@@ -13,10 +13,12 @@ namespace headhuntapi.Controllers
     public class ReviewController : Controller
     {
         private readonly IReviewRepository _reviewRepo;
+        private readonly IRecruiterRepository _recruiterRepo;
 
-        public ReviewController(IReviewRepository reviewRepo)
+        public ReviewController(IReviewRepository reviewRepo, IRecruiterRepository recruiterRepo)
         {
             _reviewRepo = reviewRepo;
+            _recruiterRepo = recruiterRepo;
         }
 
         [HttpGet]
@@ -27,7 +29,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpGet("{id}")]
-        public JsonResult Get(int id)
+        public JsonResult Get(Guid id)
         {
             var review = _reviewRepo.GetReview(id);
             return Json(review);
@@ -37,13 +39,17 @@ namespace headhuntapi.Controllers
         [HttpPost]
         public JsonResult Post([FromBody] ReviewDto review)
         {
+            var recruiter = _recruiterRepo.GetRecruiter(review.RecruiterId);
+            if(recruiter == null) {
+                return Json(false);
+            }
             Reviews reviewF = new Reviews
             {
                 Title = review.Title,
                 Body = review.Body,
                 Stars = review.Stars,
                 Date = System.DateTime.Now,
-                RecruiterId = review.RecruiterId,
+                RecruiterId = recruiter.Id,
                 UniqueId = System.Guid.NewGuid()
             };
 
@@ -54,7 +60,7 @@ namespace headhuntapi.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public JsonResult Delete(int id)
+        public JsonResult Delete(Guid id)
         {
             _reviewRepo.DeleteReview(id);
             return Json(true);

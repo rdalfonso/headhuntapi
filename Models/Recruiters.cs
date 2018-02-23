@@ -10,7 +10,6 @@ namespace headhuntapi.Models
             Reviews = new HashSet<Reviews>();
         }
 
-        [System.Runtime.Serialization.IgnoreDataMember]
         public int Id { get; set; }
         public Guid? UniqueId { get; set; }
         public string Name { get; set; }

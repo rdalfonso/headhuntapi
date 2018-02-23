@@ -29,7 +29,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpGet("{id}")]
-        public JsonResult Get(int id)
+        public JsonResult Get(Guid id)
         {
             var candidate = _candidateRepo.GetCandidate(id);
             return Json(candidate);
@@ -55,7 +55,7 @@ namespace headhuntapi.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public JsonResult Delete(int id)
+        public JsonResult Delete(Guid id)
         {
             _candidateRepo.DeleteCandidate(id);
             return Json(true);

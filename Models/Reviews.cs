@@ -5,7 +5,6 @@ namespace headhuntapi.Models
 {
     public partial class Reviews
     {
-        [System.Runtime.Serialization.IgnoreDataMember]
         public int Id { get; set; }
         public Guid? UniqueId { get; set; }
         public string Title { get; set; }
@@ -15,11 +14,10 @@ namespace headhuntapi.Models
 
         [System.Runtime.Serialization.IgnoreDataMember]
         public int? RecruiterId { get; set; }
-        [System.Runtime.Serialization.IgnoreDataMember]
-        public int? CandidateId { get; set; }
 
-        [System.Runtime.Serialization.IgnoreDataMember]
+        public int? CandidateId { get; set; }
         public Candidates Candidate { get; set; }
+
         [System.Runtime.Serialization.IgnoreDataMember]
         public Recruiters Recruiter { get; set; }
     }

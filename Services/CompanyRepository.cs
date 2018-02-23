@@ -24,12 +24,23 @@ namespace headhuntapi.Services
             return companies;
         }
 
-        public Company GetCompany(int id)
+
+        public List<Company> GetCompaniesSearch(string term)
+        {
+            List<Company> companies =
+                _context.Company.Where(c => c.Name.Contains(term))
+                 .ToList();
+
+            return companies;
+        }
+
+
+        public Company GetCompany(Guid id)
         {
             Company companies = 
                 _context.Company
                         .Include(r => r.Recruiters)
-                        .Where(r => r.Id == id)
+                        .Where(r => r.UniqueId == id)
                         .FirstOrDefault();
             return companies;
         }
@@ -50,11 +61,11 @@ namespace headhuntapi.Services
 
         }
 
-        public bool DeleteCompany(int Id)
+        public bool DeleteCompany(Guid Id)
         {
             try
             {
-                Company companies = _context.Company.Where(r => r.Id == Id).FirstOrDefault();
+                Company companies = _context.Company.Where(r => r.UniqueId == Id).FirstOrDefault();
                 _context.Company.Remove(companies);
                 _context.SaveChanges();
                 return true;

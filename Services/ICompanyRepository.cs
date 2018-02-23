@@ -7,9 +7,10 @@ namespace headhuntapi.Services
 {
     public interface ICompanyRepository
     {
+        List<Company> GetCompaniesSearch(string text);
         List<Company> GetCompanies();
-        Company GetCompany(int id);
+        Company GetCompany(Guid id);
         bool AddCompany(Company company);
-        bool DeleteCompany(int Id);
+        bool DeleteCompany(Guid Id);
     }
 }

@@ -8,8 +8,8 @@ namespace headhuntapi.Services
     public interface ICandidateRepository
     {
         List<Candidates> GetCandidates();
-        Candidates GetCandidate(int id);
+        Candidates GetCandidate(Guid id);
         bool AddCandidate(Candidates candidate);
-        bool DeleteCandidate(int Id);
+        bool DeleteCandidate(Guid Id);
     }
 }
