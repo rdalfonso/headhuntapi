@@ -20,6 +20,7 @@ namespace headhuntapi.Services
             List<Company> companies = 
                 _context.Company
                         .Include(r => r.Recruiters)
+                        .OrderBy(c => c.Name)
                         .ToList();
             return companies;
         }
@@ -28,7 +29,7 @@ namespace headhuntapi.Services
         public List<Company> GetCompaniesSearch(string term)
         {
             List<Company> companies =
-                _context.Company.Where(c => c.Name.Contains(term))
+                _context.Company.Where(c => c.Name.StartsWith(term, StringComparison.InvariantCultureIgnoreCase))
                  .ToList();
 
             return companies;

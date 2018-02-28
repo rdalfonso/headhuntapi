@@ -1,8 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace headhuntapi.Models
 {
@@ -13,7 +11,14 @@ namespace headhuntapi.Models
         public virtual DbSet<Recruiters> Recruiters { get; set; }
         public virtual DbSet<Reviews> Reviews { get; set; }
 
-        public IConfiguration Configuration { get; }          public HeadHuntReviewContext(             DbContextOptions<HeadHuntReviewContext> options,             IConfiguration configuration) : base(options)         {             Configuration = configuration;         }          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)         {             if (!optionsBuilder.IsConfigured)             {                 optionsBuilder.UseSqlServer(Configuration.GetConnectionString("HeadHuntReviewsDatabase"));             }         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer(@"Server=localhost,1401;Initial Catalog=HeadHuntReview;Integrated Security=False;User Id=SA;Password=L@rc0mb3");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +30,10 @@ namespace headhuntapi.Models
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FbUid)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Industry)

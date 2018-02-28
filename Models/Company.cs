@@ -5,7 +5,11 @@ namespace headhuntapi.Models
 {
     public partial class Company
     {
-        [System.Runtime.Serialization.IgnoreDataMember]
+        public Company()
+        {
+            Recruiters = new HashSet<Recruiters>();
+        }
+
         public int Id { get; set; }
         public Guid? UniqueId { get; set; }
         public string Name { get; set; }
@@ -16,6 +20,7 @@ namespace headhuntapi.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+
         public ICollection<Recruiters> Recruiters { get; set; }
     }
 }

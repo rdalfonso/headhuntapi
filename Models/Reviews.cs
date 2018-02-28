@@ -11,14 +11,10 @@ namespace headhuntapi.Models
         public string Body { get; set; }
         public int? Stars { get; set; }
         public DateTime? Date { get; set; }
-
-        [System.Runtime.Serialization.IgnoreDataMember]
         public int? RecruiterId { get; set; }
-
         public int? CandidateId { get; set; }
-        public Candidates Candidate { get; set; }
 
-        [System.Runtime.Serialization.IgnoreDataMember]
+        public Candidates Candidate { get; set; }
         public Recruiters Recruiter { get; set; }
     }
 }

@@ -18,9 +18,8 @@ namespace headhuntapi.Models
         public string Email { get; set; }
         public int? Stars { get; set; }
         public string Level { get; set; }
-        [System.Runtime.Serialization.IgnoreDataMember]
         public int? CompanyId { get; set; }
-        [System.Runtime.Serialization.IgnoreDataMember]
+
         public Company Company { get; set; }
         public ICollection<Reviews> Reviews { get; set; }
     }
