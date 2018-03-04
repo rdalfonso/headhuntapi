@@ -10,16 +10,21 @@ namespace headhuntapi.Models
             Reviews = new HashSet<Reviews>();
         }
 
+        [System.Runtime.Serialization.IgnoreDataMember]
         public int Id { get; set; }
         public Guid? UniqueId { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string LinkedIn { get; set; }
         public string Email { get; set; }
-        public int? Stars { get; set; }
         public string Level { get; set; }
-        public int? CompanyId { get; set; }
 
+        [System.Runtime.Serialization.IgnoreDataMember]
+        public byte IsApproved { get; set; }
+
+        [System.Runtime.Serialization.IgnoreDataMember]
+        public int? CompanyId { get; set; }
+        [System.Runtime.Serialization.IgnoreDataMember]
         public Company Company { get; set; }
         public ICollection<Reviews> Reviews { get; set; }
     }

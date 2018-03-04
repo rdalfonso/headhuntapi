@@ -14,11 +14,17 @@ namespace headhuntapi.Controllers
     {
         private readonly IReviewRepository _reviewRepo;
         private readonly IRecruiterRepository _recruiterRepo;
+        private readonly ICandidateRepository _candidateRepo;
 
-        public ReviewController(IReviewRepository reviewRepo, IRecruiterRepository recruiterRepo)
+        public ReviewController(
+            IReviewRepository reviewRepo, 
+            IRecruiterRepository recruiterRepo,
+            ICandidateRepository candidateRepo
+        )
         {
             _reviewRepo = reviewRepo;
             _recruiterRepo = recruiterRepo;
+            _candidateRepo = candidateRepo;
         }
 
         [HttpGet]
@@ -39,6 +45,12 @@ namespace headhuntapi.Controllers
         [HttpPost]
         public JsonResult Post([FromBody] ReviewDto review)
         {
+
+            var candidate = _candidateRepo.GetCandidateForAuth(review.CandidateFbId);
+            if (candidate == null) {
+                return Json(false);
+            }
+
             var recruiter = _recruiterRepo.GetRecruiter(review.RecruiterId);
             if(recruiter == null) {
                 return Json(false);
@@ -50,7 +62,12 @@ namespace headhuntapi.Controllers
                 Stars = review.Stars,
                 Date = System.DateTime.Now,
                 RecruiterId = recruiter.Id,
-                UniqueId = System.Guid.NewGuid()
+                CandidateId = candidate.Id,
+                UniqueId = System.Guid.NewGuid(),
+                IsTooAggressive = Convert.ToByte(review.IsTooAggressive),
+                IsDishonestJob = Convert.ToByte(review.IsDishonestJob),
+                IsPersonalInfo = Convert.ToByte(review.IsPersonalInfo),
+                IsFakeProfile = Convert.ToByte(review.IsFakeProfile)
             };
 
             _reviewRepo.AddReview(reviewF);

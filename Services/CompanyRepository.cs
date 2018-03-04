@@ -20,6 +20,7 @@ namespace headhuntapi.Services
             List<Company> companies = 
                 _context.Company
                         .Include(r => r.Recruiters)
+                        .ThenInclude(r => r.Reviews)
                         .OrderBy(c => c.Name)
                         .ToList();
             return companies;
@@ -41,6 +42,7 @@ namespace headhuntapi.Services
             Company companies = 
                 _context.Company
                         .Include(r => r.Recruiters)
+                        .ThenInclude(r => r.Reviews)
                         .Where(r => r.UniqueId == id)
                         .FirstOrDefault();
             return companies;

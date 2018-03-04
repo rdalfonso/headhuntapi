@@ -45,7 +45,7 @@ namespace headhuntapi.Controllers
                 Industry = candidate.Industry,
                 Email = candidate.Email,
                 ExperienceYrs = candidate.ExperienceYrs,
-                FbUid = candidate.FbUid,
+                FireBaseId = candidate.FireBaseId,
                 UniqueId = System.Guid.NewGuid()
             };
 

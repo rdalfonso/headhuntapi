@@ -9,6 +9,7 @@ namespace headhuntapi.Services
     {
         List<Candidates> GetCandidates();
         Candidates GetCandidate(Guid id);
+        Candidates GetCandidateForAuth(string id);
         bool AddCandidate(Candidates candidate);
         bool DeleteCandidate(Guid Id);
     }

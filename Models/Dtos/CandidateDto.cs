@@ -8,7 +8,7 @@ namespace headhuntapi.Models.Dtos
         public string Industry { get; set; }
         public string Email { get; set; }
         public int ExperienceYrs { get; set; }
-        public string FbUid { get; set; }
+        public string FireBaseId { get; set; }
     }
 
 }

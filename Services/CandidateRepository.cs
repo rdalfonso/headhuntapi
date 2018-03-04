@@ -26,6 +26,12 @@ namespace headhuntapi.Services
             return candidates;
         }
 
+        public Candidates GetCandidateForAuth(string id)
+        {
+            Candidates candidates = _context.Candidates.Where(r => r.FireBaseId == id).FirstOrDefault();
+            return candidates;
+        }
+
         public bool AddCandidate(Candidates candidates)
         {
             try
