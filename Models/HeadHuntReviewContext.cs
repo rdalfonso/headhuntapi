@@ -40,6 +40,7 @@ namespace headhuntapi.Models
                     .IsUnicode(false);
             });
 
+
             modelBuilder.Entity<Company>(entity =>
             {
                 entity.HasIndex(e => e.Id)
@@ -81,6 +82,7 @@ namespace headhuntapi.Models
                 entity.Property(e => e.IsApproved).HasColumnType("tinyint");;
             });
 
+
             modelBuilder.Entity<Recruiters>(entity =>
             {
                 entity.HasIndex(e => e.Id)
@@ -111,6 +113,7 @@ namespace headhuntapi.Models
                     .WithMany(p => p.Recruiters)
                     .HasForeignKey(d => d.CompanyId)
                     .HasConstraintName("FK__Recruiter__Compa__4D94879B");
+
 
                 entity.Property(e => e.IsApproved).HasColumnType("tinyint");;
             });

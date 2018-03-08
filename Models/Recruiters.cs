@@ -24,7 +24,6 @@ namespace headhuntapi.Models
 
         [System.Runtime.Serialization.IgnoreDataMember]
         public int? CompanyId { get; set; }
-        [System.Runtime.Serialization.IgnoreDataMember]
         public Company Company { get; set; }
         public ICollection<Reviews> Reviews { get; set; }
     }

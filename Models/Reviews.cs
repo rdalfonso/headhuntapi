@@ -28,7 +28,6 @@ namespace headhuntapi.Models
         public int? CandidateId { get; set; }
         public Candidates Candidate { get; set; }
 
-        [System.Runtime.Serialization.IgnoreDataMember]
         public Recruiters Recruiter { get; set; }
     }
 }

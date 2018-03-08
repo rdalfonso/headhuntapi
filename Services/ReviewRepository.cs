@@ -19,6 +19,7 @@ namespace headhuntapi.Services
         {
             List<Reviews> reviews = 
                 _context.Reviews
+                        .Include(r => r.Recruiter)
                         .Include(r => r.Candidate)
                         .ToList();
             return reviews;
@@ -28,6 +29,7 @@ namespace headhuntapi.Services
         {
             Reviews reviews =
                 _context.Reviews
+                        .Include(r => r.Recruiter)
                         .Include(r => r.Candidate)
                         .Where(r => r.UniqueId == id)
                         .FirstOrDefault();

@@ -33,7 +33,9 @@ namespace headhuntapi
                                  .AllowAnyHeader()
                                  .AllowAnyMethod();
                       });
-            });             services.AddMvc();              //var connString = $"Data Source=localhost,1401;Initial Catalog=HeadHuntReview;User ID=SA;Password=L@rc0mb3;";             services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HeadHuntReviewsDatabase")));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();
+            });             services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+             });              //var connString = $"Data Source=localhost,1401;Initial Catalog=HeadHuntReview;User ID=SA;Password=L@rc0mb3;";             services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HeadHuntReviewsDatabase")));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICandidateRepository, CandidateRepository>();         } 
