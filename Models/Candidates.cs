@@ -12,10 +12,7 @@ namespace headhuntapi.Models
         public string Industry { get; set; }
         public string Email { get; set; }
         public int? ExperienceYrs { get; set; }
-        [System.Runtime.Serialization.IgnoreDataMember]
         public string FireBaseId { get; set; }
-
-        [System.Runtime.Serialization.IgnoreDataMember]
         public ICollection<Reviews> Reviews { get; set; }
     }
 }
