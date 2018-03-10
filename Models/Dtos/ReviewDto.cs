@@ -12,5 +12,6 @@ namespace headhuntapi.Models.Dtos
         public int IsDishonestJob { get; set; }
         public int IsPersonalInfo { get; set; }
         public int IsFakeProfile { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

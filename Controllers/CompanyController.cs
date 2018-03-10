@@ -35,7 +35,6 @@ namespace headhuntapi.Controllers
             return Json(company);
         }
 
-        // POST api/values
         [HttpPost]
         public JsonResult Post([FromBody] CompanyDto company)
         {
@@ -54,7 +53,28 @@ namespace headhuntapi.Controllers
 
             _companyRepo.AddCompany(companyF);
             return Json(true);
+        }
 
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, [FromBody] CompanyDto company)
+        {
+            var companyUpdate = _companyRepo.GetCompany(id);
+            if (companyUpdate == null)
+            {
+                return NotFound();
+            }
+            companyUpdate.Name = company.Name;
+            companyUpdate.Url = company.Url;
+            companyUpdate.Industry = company.Industry;
+            companyUpdate.Address1 = company.Address1;
+            companyUpdate.Address2 = company.Address2;
+            companyUpdate.City = company.City;
+            companyUpdate.State = company.State;
+            companyUpdate.ZipCode = company.ZipCode;
+            companyUpdate.IsApproved = Convert.ToByte(company.IsApproved);
+
+            _companyRepo.UpdateCompany(companyUpdate);
+            return new NoContentResult();
         }
 
         // DELETE api/values/5

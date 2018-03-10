@@ -17,8 +17,6 @@ namespace headhuntapi.Models
         public byte IsDishonestJob { get; set; }
         public byte IsPersonalInfo { get; set; }
         public byte IsFakeProfile { get; set; }
-
-        [System.Runtime.Serialization.IgnoreDataMember]
         public byte IsApproved { get; set; }
 
         [System.Runtime.Serialization.IgnoreDataMember]

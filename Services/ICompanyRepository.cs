@@ -11,6 +11,7 @@ namespace headhuntapi.Services
         List<Company> GetCompanies();
         Company GetCompany(Guid id);
         bool AddCompany(Company company);
+        bool UpdateCompany(Company company);
         bool DeleteCompany(Guid Id);
     }
 }

@@ -21,6 +21,7 @@ namespace headhuntapi.Services
                 _context.Reviews
                         .Include(r => r.Recruiter)
                         .Include(r => r.Candidate)
+                        .Where(r => r.IsApproved == 0)
                         .ToList();
             return reviews;
         }
@@ -49,7 +50,21 @@ namespace headhuntapi.Services
                 Console.WriteLine(ex.ToString());
                 return false;
             }
+        }
 
+        public bool UpdateReview(Reviews reviews)
+        {
+            try
+            {
+                _context.Reviews.Update(reviews);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
         }
 
         public bool DeleteReview(Guid Id)

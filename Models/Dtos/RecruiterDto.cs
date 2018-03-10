@@ -9,5 +9,6 @@ namespace headhuntapi.Models.Dtos
         public string Email { get; set; }
         public string Level { get; set; }
         public Guid CompanyId { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

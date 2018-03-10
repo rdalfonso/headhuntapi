@@ -72,7 +72,27 @@ namespace headhuntapi.Controllers
 
             _reviewRepo.AddReview(reviewF);
             return Json(true);
+        }
 
+        [HttpPut("{id}")]
+        public IActionResult Update(Guid id, [FromBody] ReviewDto review)
+        {
+            var reviewUpdate = _reviewRepo.GetReview(id);
+            if (reviewUpdate == null)
+            {
+                return NotFound();
+            }
+            reviewUpdate.Title = review.Title;
+            reviewUpdate.Body = review.Body;
+            reviewUpdate.Stars = review.Stars;
+            reviewUpdate.IsTooAggressive = Convert.ToByte(review.IsTooAggressive);
+            reviewUpdate.IsDishonestJob = Convert.ToByte(review.IsDishonestJob);
+            reviewUpdate.IsPersonalInfo = Convert.ToByte(review.IsPersonalInfo);
+            reviewUpdate.IsFakeProfile = Convert.ToByte(review.IsFakeProfile);
+            reviewUpdate.IsApproved = Convert.ToByte(review.IsApproved);
+
+            _reviewRepo.UpdateReview(reviewUpdate);
+            return new NoContentResult();
         }
 
         // DELETE api/values/5

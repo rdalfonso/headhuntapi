@@ -10,6 +10,7 @@ namespace headhuntapi.Services
         List<Reviews> GetReviews();
         Reviews GetReview(Guid id);
         bool AddReview(Reviews recruiter);
+        bool UpdateReview(Reviews review);
         bool DeleteReview(Guid Id);
     }
 }

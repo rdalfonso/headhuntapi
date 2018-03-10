@@ -16,8 +16,6 @@ namespace headhuntapi.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
-
-        [System.Runtime.Serialization.IgnoreDataMember]
         public byte IsApproved { get; set; }
         public ICollection<Recruiters> Recruiters { get; set; }
     }

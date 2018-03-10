@@ -18,8 +18,6 @@ namespace headhuntapi.Models
         public string LinkedIn { get; set; }
         public string Email { get; set; }
         public string Level { get; set; }
-
-        [System.Runtime.Serialization.IgnoreDataMember]
         public byte IsApproved { get; set; }
 
         [System.Runtime.Serialization.IgnoreDataMember]
