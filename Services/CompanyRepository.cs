@@ -21,6 +21,7 @@ namespace headhuntapi.Services
                 _context.Company
                         .Include(r => r.Recruiters)
                         .ThenInclude(r => r.Reviews)
+                        .Where(r => r.IsApproved == 0)
                         .OrderBy(c => c.Name)
                         .ToList();
             return companies;
@@ -33,7 +34,6 @@ namespace headhuntapi.Services
                         .Include(r => r.Recruiters)
                         .ThenInclude(r => r.Reviews)
                         .Where(r => r.UniqueId == id)
-                        .Where(r => r.IsApproved == 0)
                         .FirstOrDefault();
             return companies;
         }
