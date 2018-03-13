@@ -11,6 +11,7 @@ namespace headhuntapi.Services
         Candidates GetCandidate(Guid id);
         Candidates GetCandidateForAuth(string id);
         bool AddCandidate(Candidates candidate);
+        bool UpdateCandidate(Candidates candidate);
         bool DeleteCandidate(Guid Id);
     }
 }

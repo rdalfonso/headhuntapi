@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using headhuntapi.Models;
 using headhuntapi.Services;
 using headhuntapi.Models.Dtos;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace headhuntapi.Controllers
 {
@@ -22,6 +18,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public JsonResult Get()
         {
             var candidates = _candidateRepo.GetCandidates();
@@ -37,6 +34,7 @@ namespace headhuntapi.Controllers
 
         // POST api/values
         [HttpPost]
+        [Authorize]
         public JsonResult Post([FromBody] CandidateDto candidate)
         {
             Candidates candidateF = new Candidates
@@ -51,11 +49,28 @@ namespace headhuntapi.Controllers
 
             _candidateRepo.AddCandidate(candidateF);
             return Json(true);
+        }
 
+        [HttpPut("{id}")]
+        [Authorize]
+        public IActionResult Update(Guid id, [FromBody] CandidateDto candidate)
+        {
+            var candidateUpdate = _candidateRepo.GetCandidateForAuth(candidate.FireBaseId);
+            if (candidateUpdate == null)
+            {
+                return NotFound();
+            }
+            candidateUpdate.Name = candidate.Name;
+            candidateUpdate.Email = candidate.Email;
+            candidateUpdate.Industry = candidate.Industry;
+
+            _candidateRepo.UpdateCandidate(candidateUpdate);
+            return new NoContentResult();
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
+        [Authorize]
         public JsonResult Delete(Guid id)
         {
             _candidateRepo.DeleteCandidate(id);

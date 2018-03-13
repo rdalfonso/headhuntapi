@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +36,21 @@ namespace headhuntapi
                       });
             });             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-             });              //var connString = $"Data Source=localhost,1401;Initial Catalog=HeadHuntReview;User ID=SA;Password=L@rc0mb3;";             services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HeadHuntReviewsDatabase")));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();
+             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = "https://securetoken.google.com/headhunterreviews-ffb31";
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = "https://securetoken.google.com/headhunterreviews-ffb31",
+                    ValidateAudience = true,
+                    ValidAudience = "headhunterreviews-ffb31",
+                    ValidateLifetime = true
+                };
+            });              //var connString = $"Data Source=localhost,1401;Initial Catalog=HeadHuntReview;User ID=SA;Password=L@rc0mb3;";             services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HeadHuntReviewsDatabase")));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICandidateRepository, CandidateRepository>();         } 
@@ -49,6 +64,7 @@ namespace headhuntapi
             }
 
             //app.UseCors(              //  options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()             //);
+            app.UseAuthentication();
             app.UseCors("AllowAllHeaders");
             app.UseMvc();
         }

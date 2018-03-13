@@ -57,6 +57,23 @@ namespace headhuntapi.Services
 
         }
 
+
+        public bool UpdateCandidate(Candidates candidates)
+        {
+            try
+            {
+                _context.Candidates.Update(candidates);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+        }
+
+
         public bool DeleteCandidate(Guid Id)
         {
             try

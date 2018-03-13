@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using headhuntapi.Models;
+using Microsoft.AspNetCore.Authorization;
 using headhuntapi.Services;
-using headhuntapi.Models.Dtos;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace headhuntapi.Controllers
 {
@@ -21,7 +15,8 @@ namespace headhuntapi.Controllers
             _companyRepo = companyRepo;
         }
 
-         [HttpGet("{term}")]
+        [HttpGet("{term}")]
+        [Authorize]
         public JsonResult Get(string term)
         {
             var companies = _companyRepo.GetCompaniesSearch(term);

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using headhuntapi.Models;
 using headhuntapi.Services;
 using headhuntapi.Models.Dtos;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace headhuntapi.Controllers
 {
@@ -22,6 +21,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public JsonResult Get()
         {
             var companies = _companyRepo.GetCompanies();
@@ -29,6 +29,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public JsonResult Get(Guid id)
         {
             var company = _companyRepo.GetCompany(id);
@@ -36,6 +37,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public JsonResult Post([FromBody] CompanyDto company)
         {
             Company companyF = new Company
@@ -56,6 +58,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Update(Guid id, [FromBody] CompanyDto company)
         {
             var companyUpdate = _companyRepo.GetCompany(id);
@@ -79,6 +82,7 @@ namespace headhuntapi.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
+        [Authorize]
         public JsonResult Delete(Guid id)
         {
             _companyRepo.DeleteCompany(id);

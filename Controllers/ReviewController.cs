@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using headhuntapi.Models;
 using headhuntapi.Services;
 using headhuntapi.Models.Dtos;
@@ -28,6 +26,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public JsonResult Get()
         {
             var reviews = _reviewRepo.GetReviews();
@@ -35,6 +34,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public JsonResult Get(Guid id)
         {
             var review = _reviewRepo.GetReview(id);
@@ -43,6 +43,7 @@ namespace headhuntapi.Controllers
 
         // POST api/values
         [HttpPost]
+        [Authorize]
         public JsonResult Post([FromBody] ReviewDto review)
         {
 
@@ -75,6 +76,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Update(Guid id, [FromBody] ReviewDto review)
         {
             var reviewUpdate = _reviewRepo.GetReview(id);
@@ -97,6 +99,7 @@ namespace headhuntapi.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
+        [Authorize]
         public JsonResult Delete(Guid id)
         {
             _reviewRepo.DeleteReview(id);
