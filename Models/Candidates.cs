@@ -9,9 +9,9 @@ namespace headhuntapi.Models
         public int Id { get; set; }
         public Guid? UniqueId { get; set; }
         public string Name { get; set; }
-        public string Industry { get; set; }
+        public string Title { get; set; }
         public string Email { get; set; }
-        public int? ExperienceYrs { get; set; }
+        public int? AdminLevel { get; set; }
         public string FireBaseId { get; set; }
         public ICollection<Reviews> Reviews { get; set; }
     }

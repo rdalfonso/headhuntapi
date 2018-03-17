@@ -27,7 +27,7 @@ namespace headhuntapi.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Industry)
+                entity.Property(e => e.Title)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -38,6 +38,9 @@ namespace headhuntapi.Models
                 entity.Property(e => e.FireBaseId)
                     .HasMaxLength(36)
                     .IsUnicode(false);
+
+                entity.Property(e => e.AdminLevel)
+                      .HasColumnType("int");
             });
 
 
@@ -79,7 +82,7 @@ namespace headhuntapi.Models
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IsApproved).HasColumnType("tinyint");;
+                entity.Property(e => e.IsApproved).HasColumnType("tinyint");
             });
 
 

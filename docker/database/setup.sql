@@ -105,20 +105,22 @@ GO
 
 CREATE TABLE Candidates
 (
-  Id        INT IDENTITY PRIMARY KEY,
-  UniqueId  uniqueidentifier,
-  Name      VARCHAR(50),
-  Industry  VARCHAR(50),
-  Email     VARCHAR(50),
-  ExperienceYrs INT,
-  FireBaseId     VARCHAR(50),
+  Id            INT IDENTITY PRIMARY KEY,
+  UniqueId      uniqueidentifier,
+  Name          VARCHAR(50),
+  Title         VARCHAR(50),
+  Email         VARCHAR(50),
+  AdminLevel    INT,
+  FireBaseId    VARCHAR(50),
 )
 GO
+
 
 SET IDENTITY_INSERT Candidates ON
 GO
 
-INSERT INTO Candidates (Id, UniqueId, Name, Industry, Email, ExperienceYrs, FireBaseId) VALUES (1, '39c8cb42-c577-4c00-84e6-833b7ecf1cdf', 'Richard DAlfonso', 'Technology', 'rdalfonso@gmail.com', 10, 'gVxQ7NB3nhgqpfcrZkSFqptdbZI2')
+INSERT INTO Candidates (Id, UniqueId, Name, Title, Email, AdminLevel, FireBaseId) 
+VALUES (1, '39c8cb42-c577-4c00-84e6-833b7ecf1cdf', 'Richard DAlfonso', 'Technology Master', 'rdalfonso@gmail.com', 1, 'gVxQ7NB3nhgqpfcrZkSFqptdbZI2')
 
 SET IDENTITY_INSERT Candidates OFF
 GO

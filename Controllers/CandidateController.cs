@@ -40,9 +40,9 @@ namespace headhuntapi.Controllers
             Candidates candidateF = new Candidates
             {
                 Name = candidate.Name,
-                Industry = candidate.Industry,
+                Title = candidate.Title,
                 Email = candidate.Email,
-                ExperienceYrs = candidate.ExperienceYrs,
+                AdminLevel = candidate.AdminLevel,
                 FireBaseId = candidate.FireBaseId,
                 UniqueId = System.Guid.NewGuid()
             };
@@ -62,7 +62,7 @@ namespace headhuntapi.Controllers
             }
             candidateUpdate.Name = candidate.Name;
             candidateUpdate.Email = candidate.Email;
-            candidateUpdate.Industry = candidate.Industry;
+            candidateUpdate.Title = candidate.Title;
 
             _candidateRepo.UpdateCandidate(candidateUpdate);
             return new NoContentResult();
