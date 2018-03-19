@@ -21,7 +21,18 @@ namespace headhuntapi.Services
                 _context.Company
                         .Include(r => r.Recruiters)
                         .ThenInclude(r => r.Reviews)
-                        .Where(r => r.IsApproved == 0)
+                        .Where(r => r.IsApproved == 1)
+                        .OrderBy(c => c.Name)
+                        .ToList();
+            return companies;
+        }
+
+        public List<Company> GetCompaniesAdmin()
+        {
+            List<Company> companies =
+                _context.Company
+                        .Include(r => r.Recruiters)
+                        .ThenInclude(r => r.Reviews)
                         .OrderBy(c => c.Name)
                         .ToList();
             return companies;

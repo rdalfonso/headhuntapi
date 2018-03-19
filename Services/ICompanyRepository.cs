@@ -9,6 +9,7 @@ namespace headhuntapi.Services
     {
         List<Company> GetCompaniesSearch(string text);
         List<Company> GetCompanies();
+        List<Company> GetCompaniesAdmin();
         Company GetCompany(Guid id);
         bool AddCompany(Company company);
         bool UpdateCompany(Company company);

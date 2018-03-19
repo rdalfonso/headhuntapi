@@ -8,6 +8,7 @@ namespace headhuntapi.Services
     public interface IReviewRepository
     {
         List<Reviews> GetReviews();
+        List<Reviews> GetReviewsAdmin();
         Reviews GetReview(Guid id);
         bool AddReview(Reviews recruiter);
         bool UpdateReview(Reviews review);

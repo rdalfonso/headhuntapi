@@ -25,6 +25,16 @@ namespace headhuntapi.Services
             return candidates;
         }
 
+        public List<Candidates> GetCandidatesAdmin()
+        {
+            List<Candidates> candidates =
+                _context.Candidates
+                        .Include(r => r.Reviews)
+                        .ToList();
+
+            return candidates;
+        }
+
         public Candidates GetCandidate(Guid id)
         {
             Candidates candidates = 

@@ -21,7 +21,17 @@ namespace headhuntapi.Services
                 _context.Reviews
                         .Include(r => r.Recruiter)
                         .Include(r => r.Candidate)
-                        .Where(r => r.IsApproved == 0)
+                        .Where(r => r.IsApproved == 1)
+                        .ToList();
+            return reviews;
+        }
+
+        public List<Reviews> GetReviewsAdmin()
+        {
+            List<Reviews> reviews =
+                _context.Reviews
+                        .Include(r => r.Recruiter)
+                        .Include(r => r.Candidate)
                         .ToList();
             return reviews;
         }
