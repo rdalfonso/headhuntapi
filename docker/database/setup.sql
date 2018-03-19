@@ -120,7 +120,7 @@ SET IDENTITY_INSERT Candidates ON
 GO
 
 INSERT INTO Candidates (Id, UniqueId, Name, Title, Email, AdminLevel, FireBaseId) 
-VALUES (1, '39c8cb42-c577-4c00-84e6-833b7ecf1cdf', 'Richard DAlfonso', 'Technology Master', 'rdalfonso@gmail.com', 1, 'gVxQ7NB3nhgqpfcrZkSFqptdbZI2')
+VALUES (1, '39c8cb42-c577-4c00-84e6-833b7ecf1cdf', 'Richard DAlfonso', 'Technology Master', 'rdalfonso@gmail.com', 1, '6rjm1pour9SzVuBZJiNXI2SPt7x1')
 
 SET IDENTITY_INSERT Candidates OFF
 GO

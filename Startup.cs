@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using headhuntapi.Models;
 using headhuntapi.Services;
@@ -50,7 +48,7 @@ namespace headhuntapi
                     ValidAudience = "headhunterreviews-ffb31",
                     ValidateLifetime = true
                 };
-            });              //var connString = $"Data Source=localhost,1401;Initial Catalog=HeadHuntReview;User ID=SA;Password=L@rc0mb3;";             services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HeadHuntReviewsDatabase")));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();
+            });              services.AddDbContext<HeadHuntReviewContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HeadHuntReviewsDatabase")));             services.AddScoped<IRecruiterRepository, RecruiterRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICandidateRepository, CandidateRepository>();         } 
