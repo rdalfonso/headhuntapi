@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using headhuntapi.Models;
 using headhuntapi.Services;
 using headhuntapi.Models.Dtos;
+using headhuntapi.Filters;
 
 namespace headhuntapi.Controllers
 {
@@ -35,6 +36,7 @@ namespace headhuntapi.Controllers
         // POST api/values
         [HttpPost]
         [Authorize]
+        [Throttle(Name = "ThrottleTest", Seconds = 5)]
         public JsonResult Post([FromBody] CandidateDto candidate)
         {
             Candidates candidateF = new Candidates
@@ -53,6 +55,7 @@ namespace headhuntapi.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
+        [Throttle(Name = "ThrottleTest", Seconds = 5)]
         public IActionResult Update(Guid id, [FromBody] CandidateDto candidate)
         {
             var candidateUpdate = _candidateRepo.GetCandidateForAuth(candidate.FireBaseId);

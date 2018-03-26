@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using headhuntapi.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace headhuntapi.Controllers
@@ -11,6 +12,7 @@ namespace headhuntapi.Controllers
     {
         // GET api/values
         [HttpGet]
+        [Throttle(Name = "ThrottleTest", Seconds = 5)]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };

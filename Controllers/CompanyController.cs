@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using headhuntapi.Models;
 using headhuntapi.Services;
 using headhuntapi.Models.Dtos;
+using headhuntapi.Filters;
 
 namespace headhuntapi.Controllers
 {
@@ -38,6 +39,7 @@ namespace headhuntapi.Controllers
 
         [HttpPost]
         [Authorize]
+        [Throttle(Name = "ThrottleTest", Seconds = 5)]
         public JsonResult Post([FromBody] CompanyDto company)
         {
             Company companyF = new Company
@@ -59,6 +61,7 @@ namespace headhuntapi.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
+        [Throttle(Name = "ThrottleTest", Seconds = 5)]
         public IActionResult Update(Guid id, [FromBody] CompanyDto company)
         {
             var companyUpdate = _companyRepo.GetCompany(id);

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using headhuntapi.Models;
 using headhuntapi.Services;
 using headhuntapi.Models.Dtos;
+using headhuntapi.Filters;
 
 namespace headhuntapi.Controllers
 {
@@ -44,6 +45,7 @@ namespace headhuntapi.Controllers
         // POST api/values
         [HttpPost]
         [Authorize]
+        [Throttle(Name = "ThrottleTest", Seconds = 5)]
         public JsonResult Post([FromBody] ReviewDto review)
         {
 
@@ -77,6 +79,7 @@ namespace headhuntapi.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
+        [Throttle(Name = "ThrottleTest", Seconds = 5)]
         public IActionResult Update(Guid id, [FromBody] ReviewDto review)
         {
             var reviewUpdate = _reviewRepo.GetReview(id);
