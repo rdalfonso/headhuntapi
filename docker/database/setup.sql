@@ -109,6 +109,7 @@ CREATE TABLE Candidates
   UniqueId      uniqueidentifier,
   Name          VARCHAR(50),
   Title         VARCHAR(50),
+  LinkedIn      VARCHAR(255),
   Email         VARCHAR(50),
   AdminLevel    INT,
   FireBaseId    VARCHAR(50),
@@ -120,7 +121,7 @@ SET IDENTITY_INSERT Candidates ON
 GO
 
 INSERT INTO Candidates (Id, UniqueId, Name, Title, Email, AdminLevel, FireBaseId) 
-VALUES (1, '39c8cb42-c577-4c00-84e6-833b7ecf1cdf', 'Richard DAlfonso', 'Technology Master', 'rdalfonso@gmail.com', 1, '6rjm1pour9SzVuBZJiNXI2SPt7x1')
+VALUES (1, '39c8cb42-c577-4c00-84e6-833b7ecf1cdf', 'Richard DAlfonso', 'Technology Master', 'https://www.linkedin.com/in/richarddalfonso/', 'rdalfonso@gmail.com', 1, '6rjm1pour9SzVuBZJiNXI2SPt7x1')
 
 SET IDENTITY_INSERT Candidates OFF
 GO

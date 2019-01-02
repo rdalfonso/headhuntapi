@@ -9,4 +9,5 @@ COPY . /usr/src/app
 
 RUN chmod +x /usr/src/app/import-data.sh
 
-CMD /bin/bash ./entrypoint.sh ; sleep infinity
+
+CMD ["/bin/bash", "-c", "/opt/mssql/bin/sqlservr"]

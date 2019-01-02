@@ -50,6 +50,7 @@
     <None Remove=".circleci\circle.yml" />
     <None Remove="circle.yml" />
     <None Remove="docker\install-dependencies.sh" />
+    <None Remove="docker-cloud.yml" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".circleci\config.yml" />

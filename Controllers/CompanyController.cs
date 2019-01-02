@@ -22,7 +22,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public JsonResult Get()
         {
             var companies = _companyRepo.GetCompanies();
