@@ -19,7 +19,7 @@ namespace headhuntapi.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public JsonResult Get()
         {
             var candidates = _candidateRepo.GetCandidates();

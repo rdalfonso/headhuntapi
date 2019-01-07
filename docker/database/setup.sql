@@ -3,7 +3,6 @@ GO
 USE HeadHuntReview;
 GO
 
-
 CREATE TABLE Company
 (
   Id         INT IDENTITY PRIMARY KEY,
@@ -103,25 +102,14 @@ CREATE UNIQUE INDEX Recruiters_Id_uindex ON Recruiters (Id)
 GO
 
 
-CREATE TABLE Candidates
-(
-  Id            INT IDENTITY PRIMARY KEY,
-  UniqueId      uniqueidentifier,
-  Name          VARCHAR(50),
-  Title         VARCHAR(50),
-  LinkedIn      VARCHAR(255),
-  Email         VARCHAR(50),
-  AdminLevel    INT,
-  FireBaseId    VARCHAR(50),
-)
+CREATE TABLE Candidates ( Id  INT IDENTITY PRIMARY KEY, UniqueId uniqueidentifier, Name VARCHAR(50), Title VARCHAR(50), LinkedIn VARCHAR(255), Email VARCHAR(50), AdminLevel    INT, FireBaseId    VARCHAR(50) )
 GO
 
 
 SET IDENTITY_INSERT Candidates ON
 GO
 
-INSERT INTO Candidates (Id, UniqueId, Name, Title, Email, AdminLevel, FireBaseId) 
-VALUES (1, '39c8cb42-c577-4c00-84e6-833b7ecf1cdf', 'Richard DAlfonso', 'Technology Master', 'https://www.linkedin.com/in/richarddalfonso/', 'rdalfonso@gmail.com', 1, '6rjm1pour9SzVuBZJiNXI2SPt7x1')
+INSERT INTO Candidates (Id, UniqueId, Name, Title, LinkedIn, Email, AdminLevel, FireBaseId) VALUES (1, '39c8cb42-c577-4c00-84e6-833b7ecf1cdf', 'Richard DAlfonso', 'Technology Master', 'https://www.linkedin.com/in/richarddalfonso/', 'rdalfonso@gmail.com', 1, '6rjm1pour9SzVuBZJiNXI2SPt7x1')
 
 SET IDENTITY_INSERT Candidates OFF
 GO

@@ -51,6 +51,7 @@
     <None Remove="circle.yml" />
     <None Remove="docker\install-dependencies.sh" />
     <None Remove="docker-cloud.yml" />
+    <None Remove="docker\database\Recruiters.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".circleci\config.yml" />
