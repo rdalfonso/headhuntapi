@@ -102,7 +102,17 @@ CREATE UNIQUE INDEX Recruiters_Id_uindex ON Recruiters (Id)
 GO
 
 
-CREATE TABLE Candidates ( Id  INT IDENTITY PRIMARY KEY, UniqueId uniqueidentifier, Name VARCHAR(50), Title VARCHAR(50), LinkedIn VARCHAR(255), Email VARCHAR(50), AdminLevel    INT, FireBaseId    VARCHAR(50) )
+CREATE TABLE Candidates
+(
+  Id            INT IDENTITY PRIMARY KEY,
+  UniqueId      uniqueidentifier,
+  Name          VARCHAR(50),
+  Title         VARCHAR(50),
+  LinkedIn      VARCHAR(255),
+  Email         VARCHAR(50),
+  AdminLevel    INT,
+  FireBaseId    VARCHAR(50),
+)
 GO
 
 

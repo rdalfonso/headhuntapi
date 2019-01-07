@@ -8,5 +8,6 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 RUN chmod +x /usr/src/app/entrypoint.sh
+RUN chmod +x /usr/src/app/import-data.sh
 
-CMD  exec /bin/bash entrypoint.sh
+CMD /bin/bash ./entrypoint.sh ; sleep infinity
