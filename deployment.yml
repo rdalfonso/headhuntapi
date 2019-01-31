@@ -1,0 +1,17 @@
+﻿apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: headhunterreviews-ffb31
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: headhunterreviews-ffb31
+    spec:
+      containers:
+      - name: headhunterreviews-ffb31
+        image: feltonvillain/headhuntreview:latest
+        ports:
+        - containerPort: 80
+        - containerPort: 443 

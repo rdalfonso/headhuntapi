@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mssql
+  labels:
+    app: mssql
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mssql
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      containers:
+        - name: mssql
+          image: microsoft/mssql-server-linux:2017-latest
+          env:
+            - name: MSSQL_PID
+              value: Express
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mssql
+                  key: password
+          ports:
+            - name: mssql
+              containerPort: 1433
+          volumeMounts:
+            - name: mssql-persistent-storage
+              mountPath: /var/opt/mssql
+            - name: mssql-bkp-persistent-storage
+              mountPath: /var/opt/bkp
+      volumes:
+        - name: mssql-persistent-storage
+          gcePersistentDisk:
+            pdName: mssql-data
+            fsType: ext4
+        - name: mssql-bkp-persistent-storage
+          gcePersistentDisk:
+            pdName: mssql-bkp
+            fsType: ext4
