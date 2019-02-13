@@ -1,12 +1,12 @@
-﻿version: 2
+version: 2
 jobs:
-  build:
-    working_directory: /app
+  build_and_test:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: circleci/node:10
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    working_directory: ~/app
     steps:
       - checkout
       - setup_remote_docker
@@ -22,21 +22,49 @@ jobs:
             - v1-master-1
           paths:
             - /caches/app.tar
+      - store_test_results:
+          path: test-results
+  deploy_to_staging:
+    docker:
+      - image: google/cloud-sdk
+    environment:
+      - PROJECT_NAME: "feltonvillain/headhuntapi"
+      - GOOGLE_PROJECT_ID: "headhunterreviews-ffb31"
+      - GOOGLE_COMPUTE_ZONE: "us-central1-a"
+      - GOOGLE_CLUSTER_NAME: "headhuntreviews-cluster"
+    steps:
+      - checkout
       - run:
-          name: Load Docker image layer cache
+          name: Setup Google Cloud SDK
           command: |
-            set +o pipefail
-            docker load -i /caches/headhuntapi.tar | true
+            echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+            gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+            gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+            gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
+      - setup_remote_docker
       - run:
-          name: Build application Docker image
+          name: Docker build and push
           command: |
-            docker build --cache-from=headhuntapi -t headhuntapi .
+            docker build -t ${PROJECT_NAME} .
+            docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PW
+            docker tag ${PROJECT_NAME} "${PROJECT_NAME}:${CIRCLE_SHA1}"
+            docker tag ${PROJECT_NAME} "${PROJECT_NAME}:latest"
+            docker push "${PROJECT_NAME}:${CIRCLE_SHA1}"
+            docker push "${PROJECT_NAME}:latest"
       - run:
-          name: Save Docker image layer cache
+          name: Deploy to Kubernetes
           command: |
-            mkdir -p /caches
-            docker save -o /caches/headhuntapi.tar headhuntapi
-      - save_cache:
-          key: v1-{{ .Branch }}-{{ epoch }}
-          paths:
-            - /caches/headhuntapi.tar
+            kubectl set image deployment/web web=${PROJECT_NAME}:${CIRCLE_SHA1}
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build_and_test
+      - deploy_to_staging:
+          requires:
+            - build_and_test
+          filters:
+            branches:
+              only: master
